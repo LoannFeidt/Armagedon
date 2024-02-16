@@ -1,37 +1,18 @@
-CREATE TYPE "division" AS ENUM (
-  'Atlantic',
-  'Southeast',
-  'Central',
-  'Northwest',
-  'Pacific',
-  'Southwest'
-);
-
-CREATE TYPE "conference" AS ENUM (
-  'East',
-  'West'
-);
-
-CREATE TYPE "matchs_status" AS ENUM (
-  '1',
-  '2',
-  '3'
-);
 
 CREATE TABLE "teams" (
-  "id" uuid PRIMARY KEY,
+  "id" int PRIMARY KEY,
   "name" varchar(50),
   "abrev" varchar(5),
   "logo" text,
   "id_API" real,
-  "conference" conference,
-  "division" division
+  "conference" varchar(50),
+  "division" varchar(50)
 );
 
 CREATE TABLE "stats" (
-  "id" uuid PRIMARY KEY,
-  "match_id" uuid,
-  "team_id" uuid,
+  "id" int PRIMARY KEY,
+  "match_id" int,
+  "team_id" int,
   "fastBreakPoints" int,
   "pointsInPaint" int,
   "biggestLead" int,
@@ -60,20 +41,18 @@ CREATE TABLE "stats" (
 );
 
 CREATE TABLE "matchs" (
-  "id" uuid PRIMARY KEY,
+  "id" int PRIMARY KEY,
   "id_API" int,
   "date" date,
-  "home_team" uuid,
-  "away_team" uuid,
-  "status" matchs_status,
-  "tot_home" int,
-  "tot_away" int
+  "home_team" int,
+  "away_team" int,
+  "status" int
 );
 
 CREATE TABLE "prediction" (
-  "id" uuid PRIMARY KEY,
+  "id" int PRIMARY KEY,
   "time" timestamp,
-  "match_id" uuid,
+  "match_id" int,
   "prob_win_home" float
 );
 
