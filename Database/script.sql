@@ -4,14 +4,12 @@ CREATE TABLE "teams" (
   "name" varchar(50),
   "abrev" varchar(5),
   "logo" text,
-  "id_API" real,
   "conference" varchar(50),
   "division" varchar(50)
 );
 
 CREATE TABLE "stats" (
-  "id" int PRIMARY KEY,
-  "match_id" int,
+  "game_id" int,
   "team_id" int,
   "fastBreakPoints" int,
   "pointsInPaint" int,
@@ -40,33 +38,29 @@ CREATE TABLE "stats" (
   "plusMinus" real
 );
 
-CREATE TABLE "matchs" (
+CREATE TABLE "games" (
   "id" int PRIMARY KEY,
-  "id_API" int,
   "date" date,
   "home_team" int,
   "away_team" int,
-  "status" int
+  "status" int,
+  "season" int
 );
 
 CREATE TABLE "prediction" (
   "id" int PRIMARY KEY,
   "time" timestamp,
-  "match_id" int,
+  "game_id" int,
   "prob_win_home" float
 );
 
-CREATE INDEX ON "teams" ("id_API");
-
 CREATE INDEX ON "teams" ("abrev");
 
-CREATE INDEX ON "matchs" ("id_API");
-
-ALTER TABLE "stats" ADD FOREIGN KEY ("match_id") REFERENCES "matchs" ("id");
+ALTER TABLE "stats" ADD FOREIGN KEY ("game_id") REFERENCES "games" ("id");
 
 ALTER TABLE "stats" ADD FOREIGN KEY ("team_id") REFERENCES "teams" ("id");
 
-ALTER TABLE "matchs" ADD FOREIGN KEY ("home_team") REFERENCES "teams" ("id");
-ALTER TABLE "matchs" ADD FOREIGN KEY ("away_team") REFERENCES "teams" ("id");
+ALTER TABLE "games" ADD FOREIGN KEY ("home_team") REFERENCES "teams" ("id");
+ALTER TABLE "games" ADD FOREIGN KEY ("away_team") REFERENCES "teams" ("id");
 
-ALTER TABLE "prediction" ADD FOREIGN KEY ("match_id") REFERENCES "matchs" ("id");
+ALTER TABLE "prediction" ADD FOREIGN KEY ("game_id") REFERENCES "games" ("id");
