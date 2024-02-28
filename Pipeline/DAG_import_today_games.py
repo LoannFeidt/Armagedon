@@ -92,7 +92,7 @@ def add_games_stats(game_id, team_id, stats, cur):
 
 with DAG(
   dag_id ="import_yesterday_games",
-  schedule="@daily",
+  schedule="0 11 * * *",
   start_date=pendulum.datetime(2024, 2, 20, tz="UTC"),
   catchup=True,
   tags=["armagedon","daily","postgres"],
@@ -113,8 +113,8 @@ with DAG(
         cur = conn.cursor()
         cur.execute(f"""SELECT id, home_team, away_team, status
             FROM public.games
-            WHERE date = '{date}' AND status = 1
-            ORDER BY date DESC """)
+            WHERE date = '{date}'
+            """)
 
         values = cur.fetchall()
         ti.xcom_push(key="list_games",value= values)
@@ -129,7 +129,7 @@ with DAG(
         cur.execute(f"""SELECT game_id, team_id
             FROM stats
             INNER JOIN public.games ON game_id = games.id
-            WHERE date = '{date}' AND status = 1
+            WHERE date = '{date}'
             ORDER BY date DESC """)
 
         values = cur.fetchall()
