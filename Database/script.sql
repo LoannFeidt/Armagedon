@@ -44,7 +44,8 @@ CREATE TABLE "games" (
   "home_team" int,
   "away_team" int,
   "status" int,
-  "season" int
+  "season" int,
+  "times_import_failed" int,
 );
 
 CREATE TABLE "prediction" (
@@ -56,11 +57,11 @@ CREATE TABLE "prediction" (
 
 CREATE INDEX ON "teams" ("abrev");
 
-ALTER TABLE "stats" ADD FOREIGN KEY ("game_id") REFERENCES "games" ("id");
+ALTER TABLE "stats" ADD FOREIGN KEY ("game_id") REFERENCES "games" ("id") ON DELETE CASCADE;
 
 ALTER TABLE "stats" ADD FOREIGN KEY ("team_id") REFERENCES "teams" ("id");
 
 ALTER TABLE "games" ADD FOREIGN KEY ("home_team") REFERENCES "teams" ("id");
 ALTER TABLE "games" ADD FOREIGN KEY ("away_team") REFERENCES "teams" ("id");
 
-ALTER TABLE "prediction" ADD FOREIGN KEY ("game_id") REFERENCES "games" ("id");
+ALTER TABLE "prediction" ADD FOREIGN KEY ("game_id") REFERENCES "games" ("id") ON DELETE CASCADE;
