@@ -89,7 +89,7 @@ def add_games_stats(game_id, team_id, stats, cur):
 
 
 with DAG(
-  dag_id ="import_missed_games",
+  dag_id ="import_missing_stats",
   schedule="@weekly",
   start_date=pendulum.datetime(2024, 2, 20, tz="UTC"),
   catchup=True,
