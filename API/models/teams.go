@@ -7,7 +7,7 @@ type TeamModel struct {
 	Logo       string `json:"logo"`
 	Conference string `json:"conf"`
 	Division   string `json:"div"`
-	Color      string `json:"color`
+	Color      string `json:"color"`
 }
 
 func (TeamModel) TableName() string {
