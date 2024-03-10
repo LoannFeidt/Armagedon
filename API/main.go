@@ -24,9 +24,13 @@ func SetupAppRouter() *gin.Engine {
 
 	api := router.Group("api/v1")
 
-	team := api.Group("/team")
+	teams := api.Group("/teams")
 
-	routes.InitTeamRoutes(db, team)
+	games := api.Group("/games")
+
+	routes.InitTeamRoutes(db, teams)
+
+	routes.InitGamesRoutes(db, games)
 
 	return router
 }
