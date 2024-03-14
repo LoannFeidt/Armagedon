@@ -1,26 +1,29 @@
-<script>
-import axios from 'axios'
-export default {
-    data () {
-        return {
-            info : ""
-        }
-    },
-    mounted () {
-      axios
-        .get('/api/v1/games/today')
-        .then(response => (this.info = response.data.data))
-        .catch(err => {
-            console.log(err.response);
-            console.log("ERROR");
-      });
-    }
-  }
+<script setup>
+import axios from 'axios';
+import { onMounted, ref } from 'vue';
+import Game from './Game.vue';
+
+const infos = ref([])
+onMounted(async () => {
+  await axios
+    .get('/api/v1/games/today')
+    .then(response => {
+      infos.value = response.data.data
+    })
+})
 </script>
 <template>
-    <div id="today_games">
-            <li v-for="value in info">
-                {{ value }}
-            </li>
+    <div class="today_games">
+        <Game v-for="value in infos" :game="value"/>
     </div>
 </template>
+
+<style>
+.today_games{
+    display: flex;
+    padding: 10px;
+    margin: 0 0 10px 0;
+    background-color: var(--gold);
+    overflow: scroll;
+}
+</style>

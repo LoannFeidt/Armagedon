@@ -9,6 +9,6 @@ import TodayGames from './components/TodayGames.vue'
   <Header/>
 
   <main>
-    <TodayGames info="" />
+    <TodayGames />
   </main>
 </template>
