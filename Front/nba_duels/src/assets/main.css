@@ -25,12 +25,11 @@ header div{
 }
 
 header .title{
-
   height: 100%;
   margin: 0 auto;
-    font-family: "Inspiration", cursive;
-    font-weight: 170;
-    font-size: 90px;
+  font-family: "Inspiration", cursive;
+  font-weight: 170;
+  font-size: 90px;
 }
 
 header .about{

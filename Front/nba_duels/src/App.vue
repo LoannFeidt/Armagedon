@@ -1,5 +1,6 @@
 <script setup>
 import Header from './components/Header.vue'
+import TodayGames from './components/TodayGames.vue'
 </script>
 
 <template>
@@ -8,6 +9,6 @@ import Header from './components/Header.vue'
   <Header/>
 
   <main>
-    <TheWelcome />
+    <TodayGames info="" />
   </main>
 </template>
