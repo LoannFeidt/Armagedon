@@ -1,0 +1,4 @@
+/model_env
+*.csv
+*.json
+/.ipynb_checkpoints
