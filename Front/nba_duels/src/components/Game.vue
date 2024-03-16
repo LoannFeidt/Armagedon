@@ -25,7 +25,6 @@ function modelStyle (team){
 <style>
 .game{
     display: flex;
-    background-color: greenyellow;
     border-radius: 25px;
     height: 100px;
     width: 200px;
@@ -55,6 +54,7 @@ function modelStyle (team){
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
 .team_logo img{
     display: block;
     width: 50px;

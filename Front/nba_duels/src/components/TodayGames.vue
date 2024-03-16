@@ -22,7 +22,7 @@ onMounted(async () => {
 .today_games{
     display: flex;
     padding: 10px;
-    margin: 0 0 10px 0;
+    margin: 0;
     background-color: var(--gold);
     overflow: scroll;
 }
