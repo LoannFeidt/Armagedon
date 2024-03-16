@@ -49,9 +49,10 @@ CREATE TABLE "games" (
 );
 
 CREATE TABLE "prediction" (
-  "id" int PRIMARY KEY,
-  "time" timestamp,
-  "game_id" int,
+  "id" SERIAL PRIMARY KEY,
+  "date" date,
+  "home_team" int,
+  "away_team" int,
   "prob_win_home" float
 );
 
@@ -64,4 +65,5 @@ ALTER TABLE "stats" ADD FOREIGN KEY ("team_id") REFERENCES "teams" ("id");
 ALTER TABLE "games" ADD FOREIGN KEY ("home_team") REFERENCES "teams" ("id");
 ALTER TABLE "games" ADD FOREIGN KEY ("away_team") REFERENCES "teams" ("id");
 
-ALTER TABLE "prediction" ADD FOREIGN KEY ("game_id") REFERENCES "games" ("id") ON DELETE CASCADE;
+ALTER TABLE "prediction" ADD FOREIGN KEY ("home_team") REFERENCES "teams" ("id");
+ALTER TABLE "prediction" ADD FOREIGN KEY ("away_team") REFERENCES "teams" ("id");
