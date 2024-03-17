@@ -35,7 +35,6 @@ func (h *handler) GetPredict(context *gin.Context) {
 		utils.APIResponse(context, "Games already exists. Please try with another games", http.StatusConflict, http.MethodGet, nil)
 		return
 	case http.StatusCreated:
-
 		utils.APIResponse(context, "SUCESS", http.StatusCreated, http.MethodGet, &predictResponse)
 		return
 	}

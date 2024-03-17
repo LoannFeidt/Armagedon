@@ -4,6 +4,8 @@ import (
 	"api-arm/models"
 	"fmt"
 	"net/http"
+	"os/exec"
+	"strconv"
 	"time"
 
 	"gorm.io/gorm"
@@ -22,7 +24,6 @@ func NewPredictsRepository(db *gorm.DB) *repository {
 }
 
 func (repo *repository) GetPredict(home_id int, away_id int) (*models.PredictionModel, int) {
-
 	db := repo.db
 	today := time.Now()
 	prediction := models.PredictionModel{
@@ -35,7 +36,14 @@ func (repo *repository) GetPredict(home_id int, away_id int) (*models.Prediction
 		First(&prediction)
 
 	if checkIfGamesExists.Error != nil {
-		pred_score := 0.45
+		val, err := exec.Command("./predictors/make_predict_v1.sh", strconv.Itoa(home_id), strconv.Itoa(away_id)).Output()
+		if err != nil {
+			return nil, http.StatusExpectationFailed
+		}
+		pred_score, err := strconv.ParseFloat(string(val), 64)
+		if err != nil {
+			return nil, http.StatusExpectationFailed
+		}
 		prediction := models.PredictionModel{
 			Home_team:     home_id,
 			Away_team:     away_id,
