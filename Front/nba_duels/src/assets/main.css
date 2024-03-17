@@ -1,0 +1,42 @@
+@import './colors.css';
+@import url('https://fonts.googleapis.com/css2?family=Inspiration&display=swap');
+
+body,#app{
+  margin:0;
+  padding: 0;
+  width: 100%;
+
+  overflow: hidden;
+}
+
+header {
+  background-color: var(--dark-blue);
+  padding: 0px;
+  margin: 0;
+  width: 100%;
+  color: var(--gold);
+  height: 115px;  
+  display: flex;
+}
+
+header div{
+  vertical-align: middle;
+  text-align: center;
+  align-items: center;
+  display: flex;
+}
+
+header .title{
+  height: 100%;
+  margin: 0 auto;
+  font-family: "Inspiration", cursive;
+  font-weight: 170;
+  font-size: 90px;
+}
+
+header .about{
+  height: 100%;
+  font-size: 50px;
+  float: right;
+  align-items: center;
+}

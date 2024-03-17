@@ -5,7 +5,8 @@ CREATE TABLE "teams" (
   "abrev" varchar(5),
   "logo" text,
   "conference" varchar(50),
-  "division" varchar(50)
+  "division" varchar(50),
+  "color" varchar(7)
 );
 
 CREATE TABLE "stats" (
